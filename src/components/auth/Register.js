@@ -6,11 +6,13 @@ import "./Auth.css"
 export const Register = () => {
     const firstName = useRef()
     const lastName = useRef()
-    const email = useRef()
+    const username = useRef()
     const bio = useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
+    const isstaff = useRef()
+    const email = useRef()
     const navigate = useNavigate()
 
     const handleRegister = (e) => {
@@ -18,10 +20,12 @@ export const Register = () => {
 
         if (password.current.value === verifyPassword.current.value) {
             const newUser = {
-                "email": email.current.value,
+                "username": username.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
-                "password": password.current.value
+                "password": password.current.value,
+                "is_staff": isstaff.current.checked,
+                "email": email.current.value
             }
 
             registerUser(newUser)
@@ -55,8 +59,12 @@ export const Register = () => {
                     <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputEmail">Email</label>
-                    <input ref={email} type="text" name="email" className="form-control" placeholder="Email" required />
+                    <label htmlFor="inputUsername">Username</label>
+                    <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="email"> Email </label>
+                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputPassword"> Password </label>
@@ -66,6 +74,12 @@ export const Register = () => {
                     <label htmlFor="verifyPassword"> Verify Password </label>
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
+                
+                <fieldset>
+                    <label htmlFor="isstaff">Are you an employee?</label>
+                    <input ref={isstaff} type="checkbox" name="isstaff" className="form-control" id="isstaff"/>
+                </fieldset>
+                
                 
                 <fieldset style={{
                     textAlign: "center"
