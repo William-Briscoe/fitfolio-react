@@ -6,7 +6,7 @@ import "./Auth.css"
 export const Register = () => {
     const firstName = useRef()
     const lastName = useRef()
-    const username = useRef()
+    const email = useRef()
     const bio = useRef()
     const password = useRef()
     const verifyPassword = useRef()
@@ -18,17 +18,16 @@ export const Register = () => {
 
         if (password.current.value === verifyPassword.current.value) {
             const newUser = {
-                "username": username.current.value,
+                "email": email.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
-                "bio": bio.current.value,
                 "password": password.current.value
             }
 
             registerUser(newUser)
                 .then(res => {
                     if ("token" in res) {
-                        localStorage.setItem("lu_token", res.token)
+                        localStorage.setItem("fit_token", res.token)
                         navigate("/")
                     }
                 })
@@ -56,8 +55,8 @@ export const Register = () => {
                     <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputUsername">Username</label>
-                    <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required />
+                    <label htmlFor="inputEmail">Email</label>
+                    <input ref={email} type="text" name="email" className="form-control" placeholder="Email" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputPassword"> Password </label>
@@ -67,10 +66,7 @@ export const Register = () => {
                     <label htmlFor="verifyPassword"> Verify Password </label>
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
-                <fieldset>
-                    <label htmlFor="verifyPassword"> Verify Password </label>
-                    <textarea ref={bio} name="bio" className="form-control" placeholder="Let other gamers know a little bit about you..." />
-                </fieldset>
+                
                 <fieldset style={{
                     textAlign: "center"
                 }}>

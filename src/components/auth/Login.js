@@ -5,7 +5,7 @@ import "./Auth.css"
 
 
 export const Login = () => {
-    const username = useRef()
+    const email = useRef()
     const password = useRef()
     const invalidDialog = useRef()
     const navigate = useNavigate()
@@ -13,13 +13,13 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
         const user = {
-            username: username.current.value,
+            email: email.current.value,
             password: password.current.value
         }
         loginUser(user)
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
-                    localStorage.setItem("lu_token", res.token)
+                    localStorage.setItem("fit_token", res.token)
                     navigate("/")
                 }
                 else {
@@ -31,16 +31,16 @@ export const Login = () => {
     return (
         <main className="container--login">
             <dialog className="dialog dialog--auth" ref={invalidDialog}>
-                <div>Username or password was not valid.</div>
+                <div>Email or password was not valid.</div>
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Level Up</h1>
+                    <h1>FitFolio</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputUsername"> Username address </label>
-                        <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
+                        <label htmlFor="inputEmail"> Email </label>
+                        <input ref={email} type="email" id="email" className="form-control" placeholder="Username address" required autoFocus />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputPassword"> Password </label>
