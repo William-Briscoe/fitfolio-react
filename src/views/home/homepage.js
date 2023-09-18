@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { getCurrentUser } from "../../managers/userManager"
 import { getUsersWorkouts } from "../../managers/WorkoutManager"
+import { useNavigate } from "react-router-dom"
 
 export const Homepage=()=>{
+    const navigate = useNavigate()
     const [currentUser, setCurrentUser] =useState({})
     const [usersWorkouts, setUsersWorkouts] = useState([])
 
@@ -21,6 +23,9 @@ export const Homepage=()=>{
 
     return(
         <article className="usersworkouts">
+            <button onClick={()=>{
+                navigate({ pathname: "/workout/new" })
+            }}>Start a new Workout!</button>
             {
                 usersWorkouts.map(workout =>{
                     return <section key={`workout-${workout.id}`} className="workout">
