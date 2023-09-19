@@ -55,5 +55,5 @@ export const deleteWorkout = (id) =>{
         headers: {
             "Authorization": `Token ${localStorage.getItem("fit_token")}`
         }
-    }).then(res=>res.json())
+    })
 }

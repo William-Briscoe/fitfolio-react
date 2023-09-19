@@ -15,10 +15,27 @@ export const Homepage=()=>{
     }, [])
 
     useEffect(()=>{
+        if(currentUser.id){
         getUsersWorkouts(currentUser.id).then(data=>{
             setUsersWorkouts(data)
+        })}
+    }, [currentUser])
+
+    useEffect(()=>{
+        console.log('rerender??')
+    }, [usersWorkouts])
+
+    const handleDelete = (id) =>{
+        deleteWorkout(id)
+        .then((response)=>{
+            if(response.ok){
+                getUsersWorkouts(currentUser.id)
+                .then(data=>{setUsersWorkouts(data)})
+            }else{
+                console.error("Failed to delete")
+            }
         })
-    }, [currentUser, usersWorkouts])
+    }
 
 
     return(
@@ -38,10 +55,7 @@ export const Homepage=()=>{
                             navigate({ pathname: `/editworkout/${workout.id}` })
                         }}>Edit</button>
                         <button onClick={()=>{
-                            deleteWorkout(workout.id).then(()=>{
-                                getUsersWorkouts(currentUser.id).then(data=>{
-                                    setUsersWorkouts(data)})
-                            })
+                            handleDelete(workout.id)
                         }}>delete</button>
                     </section>
                 })
