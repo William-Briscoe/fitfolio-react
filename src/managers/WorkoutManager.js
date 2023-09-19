@@ -47,3 +47,13 @@ export const updateWorkout = (workout, id) =>{
         console.log("API Response:", response)
         response.json()})
 }
+
+
+export const deleteWorkout = (id) =>{
+    return fetch(`http://localhost:8000/workouts/${id}`,{
+        method: 'DELETE',
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("fit_token")}`
+        }
+    }).then(res=>res.json())
+}

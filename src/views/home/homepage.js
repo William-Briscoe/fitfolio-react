@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getCurrentUser } from "../../managers/userManager"
-import { getUsersWorkouts } from "../../managers/WorkoutManager"
+import { deleteWorkout, getUsersWorkouts } from "../../managers/WorkoutManager"
 import { useNavigate } from "react-router-dom"
 
 export const Homepage=()=>{
@@ -18,7 +18,7 @@ export const Homepage=()=>{
         getUsersWorkouts(currentUser.id).then(data=>{
             setUsersWorkouts(data)
         })
-    }, [currentUser])
+    }, [currentUser, usersWorkouts])
 
 
     return(
@@ -37,7 +37,12 @@ export const Homepage=()=>{
                         <button onClick={()=>{
                             navigate({ pathname: `/editworkout/${workout.id}` })
                         }}>Edit</button>
-                        <button>delete</button>
+                        <button onClick={()=>{
+                            deleteWorkout(workout.id).then(()=>{
+                                getUsersWorkouts(currentUser.id).then(data=>{
+                                    setUsersWorkouts(data)})
+                            })
+                        }}>delete</button>
                     </section>
                 })
             }
