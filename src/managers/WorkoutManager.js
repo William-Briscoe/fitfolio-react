@@ -7,6 +7,15 @@ export const getUsersWorkouts = (userId)=>{
         .then(res => res.json())
 }
 
+export const getSingleWorkout = (id) =>{
+    return fetch(`http://localhost:8000/workouts/${id}`,{
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("fit_token")}`
+        }
+    })
+    .then(response =>response.json())
+}
+
 export const createWorkout = (workout)=>{
     return fetch("http://localhost:8000/workouts", {
         method: "POST",
@@ -23,4 +32,18 @@ export const createWorkout = (workout)=>{
         else{
         return response.json()}
     })
+}
+
+export const updateWorkout = (workout, id) =>{
+    return fetch(`http://localhost:8000/workouts/${id}`, {
+        method: "PUT",
+        headers: {
+            "content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("fit_token")}`
+        },
+        body: JSON.stringify(workout)
+    })
+    .then(response => {
+        console.log("API Response:", response)
+        response.json()})
 }

@@ -34,6 +34,10 @@ export const Homepage=()=>{
                         <div>weight: {workout.weight}</div>
                         <div>Reps: {workout.reps_distance}</div>
                         <div>Sets: {workout.sets_time}</div>
+                        <button onClick={()=>{
+                            navigate({ pathname: `/editworkout/${workout.id}` })
+                        }}>Edit</button>
+                        <button>delete</button>
                     </section>
                 })
             }
