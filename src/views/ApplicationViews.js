@@ -4,6 +4,7 @@ import { Register } from "../components/auth/Register"
 import { Authorized } from "./Authorized"
 import { Homepage } from "./home/homepage"
 import { NewWorkoutForm } from "./workouts/NewWorkoutForm"
+import { EditWorkout } from "./workouts/EditWorkoutForm"
 
 
 export const ApplicationViews = () => {
@@ -14,6 +15,7 @@ export const ApplicationViews = () => {
             <Route element={<Authorized />}>
                 <Route path='/' element={<Homepage />}/>
                 <Route path="/workout/new" element={<NewWorkoutForm/>}/>
+                <Route path="/editworkout/:workoutId" element={<EditWorkout/>}/>
             </Route>
         </Routes>
     </>
