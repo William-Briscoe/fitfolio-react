@@ -32,6 +32,9 @@ export const Register = () => {
                 .then(res => {
                     if ("token" in res) {
                         localStorage.setItem("fit_token", res.token)
+                        if(res.is_staff === true){
+                            localStorage.setItem('fit_staff', res.is_staff)
+                        }
                         navigate("/")
                     }
                 })
