@@ -7,6 +7,7 @@ import { NewWorkoutForm } from "./workouts/NewWorkoutForm"
 import { EditWorkout } from "./workouts/EditWorkoutForm"
 import { ManageExercises } from "./exercises/manageExercises"
 import { EditExercise } from "./exercises/editExercise"
+import { NewExerciseForm } from "./exercises/NewExerciseForm"
 
 
 export const ApplicationViews = () => {
@@ -20,6 +21,7 @@ export const ApplicationViews = () => {
                 <Route path="/editworkout/:workoutId" element={<EditWorkout/>}/>
                 <Route path="/exercises" element={<ManageExercises/>}/>
                 <Route path="/editExercise/:exerciseId" element={<EditExercise/>}/>
+                <Route path="/exercise/new" element={<NewExerciseForm/>}/>
             </Route>
         </Routes>
     </>

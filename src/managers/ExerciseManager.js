@@ -17,6 +17,24 @@ export const getSingleExercise = (id) =>{
     .then(response =>response.json())
 }
 
+export const createExercise = (exercise)=>{
+    return fetch("http://localhost:8000/exercises", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("fit_token")}`
+        },
+        body: JSON.stringify(exercise)
+    })
+    .then(response =>{
+        if(!response.ok){
+            throw new Error("Failed to create exercise")
+        }
+        else{
+        return response.json()}
+    })
+}
+
 export const updateExercise = (exercise, id) =>{
     return fetch(`http://localhost:8000/exercises/${id}`, {
         method: "PUT",
