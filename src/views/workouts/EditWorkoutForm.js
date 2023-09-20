@@ -58,7 +58,7 @@ export const EditWorkout = () => {
                 loading ? <div>loading...</div>
                     :
                     <>
-                        <h2 className="workoutform__title">Log a new Workout!!</h2>
+                        <h2 className="workoutform__title">Edit your workout</h2>
                         <fieldset>
                             <div className="form-group">
                                 <label htmlFor="exercise">Choose your exercise: </label>
