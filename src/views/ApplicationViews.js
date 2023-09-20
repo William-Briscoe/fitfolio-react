@@ -19,7 +19,7 @@ export const ApplicationViews = () => {
                 <Route path="/workout/new" element={<NewWorkoutForm/>}/>
                 <Route path="/editworkout/:workoutId" element={<EditWorkout/>}/>
                 <Route path="/exercises" element={<ManageExercises/>}/>
-                <Route path="/editExercise/:workoutId" element={<EditExercise/>}/>
+                <Route path="/editExercise/:exerciseId" element={<EditExercise/>}/>
             </Route>
         </Routes>
     </>
