@@ -40,6 +40,10 @@ export const ManageExercises = () =>{
                 :
                 
                 <div>
+                    <button className="newexercisebutton"
+                    onClick={()=>{
+                        navigate({ pathname: `/exercise/new`})
+                    }}>Create an exercise</button>
                     {
                         exercises.map(exercise=>{
                             return(
