@@ -31,6 +31,15 @@ export const updateExercise = (exercise, id) =>{
         response.json()})
 }
 
+export const deleteExercise = (id) =>{
+    return fetch(`http://localhost:8000/exercises/${id}`,{
+        method: 'DELETE',
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("fit_token")}`
+        }
+    })
+}
+
 
 
 export const getExerciseTypes = () =>{
