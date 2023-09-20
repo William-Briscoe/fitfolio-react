@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getExercises } from "../../managers/ExerciseManager"
+import { deleteExercise, getExercises } from "../../managers/ExerciseManager"
 import { useNavigate } from "react-router-dom"
 
 export const ManageExercises = () =>{
@@ -17,6 +17,18 @@ export const ManageExercises = () =>{
         }, 1000)
     }, [])
 
+
+    const handleDelete = (id) => {
+        deleteExercise(id)
+            .then((response) => {
+                if (response.ok) {
+                    getExercises()
+                    .then(data => { setExercises(data) })
+                } else {
+                    console.error("Failed to delete")
+                }
+            })
+    }
 
     return(<>{
         (localStorage.getItem('fit_staff')) ?
@@ -45,7 +57,7 @@ export const ManageExercises = () =>{
                                     navigate({ pathname: `/editExercise/${exercise.id}` })
                                 }}>Edit</button>
                                 <button onClick={()=>{
-                                    
+                                    handleDelete(exercise.id)
                                 }}>delete</button>
                             </section>
                             )
