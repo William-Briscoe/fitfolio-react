@@ -6,29 +6,24 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             {
-                (localStorage.getItem("fit_token") !== null) ?<>
-            <li className="navbar__item">
-            <button className="nav-link fakeLink"
+                (localStorage.getItem("fit_token") !== null) ? <>
+                    <li className="navbar__item">
+                        <button className="nav-link fakeLink"
                             onClick={() => {
-                                
                                 navigate('/')
                             }}
                         >Home</button>
-            </li>
-            {(localStorage.getItem('fit_staff') !== null)?
-            <li className="nav-item">
-            <button className="nav-link fakeLink"
-                onClick={()=>{
-                    navigate('/exercises')
-                }}>Exercise Management</button>
-            </li>
-            :
-            <></>
-            }
-            <li className="navbar__item">
-                Navigation link
-            </li>
-            
+                    </li>
+                    {(localStorage.getItem('fit_staff') !== null) ?
+                        <li className="navbar__item">
+                            <button className="nav-link fakeLink"
+                                onClick={() => {
+                                    navigate('/exercises')
+                                }}>Exercise Management</button>
+                        </li>
+                        :
+                        <></>
+                    }
                     <li className="nav-item">
                         <button className="nav-link fakeLink"
                             onClick={() => {

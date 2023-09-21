@@ -18,7 +18,7 @@ export const Homepage = () => {
     const dateOptions = []
 
     usersWorkouts.map(workout => {
-        if(!dateOptions.includes(workout.date)){
+        if (!dateOptions.includes(workout.date)) {
             dateOptions.push(workout.date)
         }
     })
@@ -39,9 +39,7 @@ export const Homepage = () => {
     //use effect to use the user id to fetch this users workouts
     //once the workouts are set we stop loading state
     useEffect(() => {
-        if (loading === false) {
-            setLoading(true)
-        }
+
         if (currentUser.id) {
 
             getUsersWorkouts(currentUser.id).then(data => {
@@ -52,13 +50,18 @@ export const Homepage = () => {
                         return workout.date === selectedDate
                     })
                 }
-                
+
                 if (selectedExercise) {
                     newlyFilteredWorkouts = newlyFilteredWorkouts.filter(workout => {
                         return workout.exercise.id === parseInt(selectedExercise)
                     })
                 }
                 setFilteredWorkouts(newlyFilteredWorkouts)
+                // setFilteredWorkouts(filteredWorkouts.sort(function(a,b){
+                //     var c = new Date(a.date);
+                //     var d = new Date(b.date);
+                //     return c-d;
+                //     }))
                 setUsersWorkouts(data)
             })
         }
@@ -89,7 +92,7 @@ export const Homepage = () => {
 
 
     return (
-        <article className="usersworkouts">
+        <article className="p-3">
             {
                 loading ? <div>Loading...</div>
                     :
@@ -122,19 +125,48 @@ export const Homepage = () => {
 
                         {
                             filteredWorkouts.map(workout => {
-                                return <section key={`workout-${workout.id}`} className="workout">
-                                    <div>{workout.date}</div>
-                                    <div>{workout.exercise.label}</div>
-                                    <div>weight: {workout.weight}</div>
-                                    <div>Reps: {workout.reps_distance}</div>
-                                    <div>Sets: {workout.sets_time}</div>
-                                    <button onClick={() => {
-                                        navigate({ pathname: `/editworkout/${workout.id}` })
-                                    }}>Edit</button>
-                                    <button onClick={() => {
-                                        handleDelete(workout.id)
-                                    }}>delete</button>
-                                </section>
+                                let iscardio = false
+                                
+                                {
+                                    exercises.map(exercise => {
+                                        if (workout.exercise.id === exercise.id) {
+                                            if(exercise.exercise_types.find(e=>e.id === 1)){
+                                                iscardio = true
+                                            }
+                                        }
+                                    })
+                                }
+                                return (
+                                    iscardio ? <>
+                                        <section key={`workout-${workout.id}`} className="workout">
+                                            <div>{workout.date}</div>
+                                            <div>{workout.exercise.label}</div>
+                                            <div>weight(lbs): {workout.weight}</div>
+                                            <div>Distance(miles): {workout.reps_distance}</div>
+                                            <div>Time(min): {workout.sets_time}</div>
+                                            <button onClick={() => {
+                                                navigate({ pathname: `/editworkout/${workout.id}` })
+                                            }}>Edit</button>
+                                            <button onClick={() => {
+                                                handleDelete(workout.id)
+                                            }}>delete</button>
+                                        </section>
+                                    </>
+                                        :
+                                        <><section key={`workout-${workout.id}`} className="workout">
+                                            <div>{workout.date}</div>
+                                            <div>{workout.exercise.label}</div>
+                                            <div>weight(lbs): {workout.weight}</div>
+                                            <div>Reps: {workout.reps_distance}</div>
+                                            <div>Sets: {workout.sets_time}</div>
+                                            <button onClick={() => {
+                                                navigate({ pathname: `/editworkout/${workout.id}` })
+                                            }}>Edit</button>
+                                            <button onClick={() => {
+                                                handleDelete(workout.id)
+                                            }}>delete</button>
+                                        </section></>
+                                )
                             })
                         }
                     </>
