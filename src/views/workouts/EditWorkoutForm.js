@@ -10,6 +10,8 @@ export const EditWorkout = () => {
     const [exercises, setExercises] = useState({})
     const [loading, setloading] = useState(true)
     const { workoutId } = useParams()
+    const [isCardio, setIsCardio] = useState(false)
+    const [exerciseChosen, setExerciseChosen] = useState(0)
 
 
     //object to be sent to api for POST
@@ -42,11 +44,28 @@ export const EditWorkout = () => {
     }, [])
 
 
+    useEffect(() => {
+        if(loading === false){
+        exercises.map(exercise => {
+            if (parseInt(currentWorkout.exercise) === exercise.id) {
+                if (exercise.exercise_types.find(e => e.id === 1)) {
+                    setIsCardio(true)
+                }else{
+                    setIsCardio(false)
+                }
+            }
+        })}
+    }, [exerciseChosen])
+
+
     //function to update current workout with user input
     const changeWorkoutState = (domEvent) => {
         const copy = { ...currentWorkout }
         copy[domEvent.target.name] = domEvent.target.value
         setCurrentWorkout(copy)
+        if (domEvent.target.name === "exercise") {
+            setExerciseChosen(parseInt(domEvent.target.value))
+        }
     }
 
 
@@ -77,30 +96,62 @@ export const EditWorkout = () => {
                                 </select>
                             </div>
                         </fieldset>
-                        <fieldset>
-                            <div className="form-group">
-                                <label htmlFor="weight">Weight in lbs: </label>
-                                <input type="number" name="weight"
-                                    value={currentWorkout.weight}
-                                    onChange={changeWorkoutState} />
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <div className="form-group">
-                                <label htmlFor="reps_distance">Repetitions: </label>
-                                <input type="number" name="reps_distance"
-                                    value={currentWorkout.reps_distance}
-                                    onChange={changeWorkoutState} />
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <div className="form-group">
-                                <label htmlFor="sets_time">Sets: </label>
-                                <input type="number" name="sets_time"
-                                    value={currentWorkout.sets_time}
-                                    onChange={changeWorkoutState} />
-                            </div>
-                        </fieldset>
+                        {
+                            isCardio ?
+                                <>
+                                    <fieldset>
+                                        <div className="form-group">
+                                            <label htmlFor="weight">Weight in lbs: </label>
+                                            <input type="number" name="weight"
+                                                value={currentWorkout.weight}
+                                                onChange={changeWorkoutState} />
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div className="form-group">
+                                            <label htmlFor="reps_distance">Distance in miles: </label>
+                                            <input type="number" name="reps_distance"
+                                                value={currentWorkout.reps_distance}
+                                                onChange={changeWorkoutState} />
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div className="form-group">
+                                            <label htmlFor="sets_time">Time in minutes: </label>
+                                            <input type="number" name="sets_time"
+                                                value={currentWorkout.sets_time}
+                                                onChange={changeWorkoutState} />
+                                        </div>
+                                    </fieldset>
+                                </>
+                                :
+                                <>
+                                    <fieldset>
+                                        <div className="form-group">
+                                            <label htmlFor="weight">Weight in lbs: </label>
+                                            <input type="number" name="weight"
+                                                value={currentWorkout.weight}
+                                                onChange={changeWorkoutState} />
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div className="form-group">
+                                            <label htmlFor="reps_distance">Repetitions: </label>
+                                            <input type="number" name="reps_distance"
+                                                value={currentWorkout.reps_distance}
+                                                onChange={changeWorkoutState} />
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div className="form-group">
+                                            <label htmlFor="sets_time">Sets: </label>
+                                            <input type="number" name="sets_time"
+                                                value={currentWorkout.sets_time}
+                                                onChange={changeWorkoutState} />
+                                        </div>
+                                    </fieldset>
+                                </>
+                        }
                         <button type="submit"
                             onClick={evt => {
                                 // Prevent form from being submitted
