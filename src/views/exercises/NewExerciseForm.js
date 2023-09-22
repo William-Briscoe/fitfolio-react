@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { getExerciseTypes, createExercise } from "../../managers/ExerciseManager"
+import "./exercise.css"
 
 export const NewExerciseForm = () => {
     const navigate = useNavigate()
@@ -84,7 +85,7 @@ export const NewExerciseForm = () => {
                 (localStorage.getItem('fit_staff')) ?
                     <>
                         {
-                            loading ? <div>Loading...</div>
+                            loading ? <div class="d-flex justify-content-center align-items-center">Loading...</div>
                             :
                             <form className="editExerciseForm">
                         <fieldset className="edit-title">
@@ -97,7 +98,7 @@ export const NewExerciseForm = () => {
                         </fieldset>
                         <fieldset className="edit-types">
                             <div>Select your tags for this exercise:</div>
-                            <ul className="tpyes-boxes">
+                            <ul className="types-boxes">
                                 {
                                     exerciseTypes.map(type => {
                                         return (<li key={type.id}>
@@ -113,7 +114,9 @@ export const NewExerciseForm = () => {
                                 }
                             </ul>
                         </fieldset>
-                        <button onClick={(e)=>{
+                        <button 
+                        class="btn btn-success"
+                        onClick={(e)=>{
                             e.preventDefault()
                             handleSubmit()
                             
