@@ -24,7 +24,7 @@ export const NavBar = () => {
                         :
                         <></>
                     }
-                    <li className="nav-item">
+                    <li className="nav-item logout">
                         <button className="nav-link fakeLink"
                             onClick={() => {
                                 localStorage.removeItem("fit_token")
