@@ -57,11 +57,6 @@ export const Homepage = () => {
                     })
                 }
                 setFilteredWorkouts(newlyFilteredWorkouts)
-                // setFilteredWorkouts(filteredWorkouts.sort(function(a,b){
-                //     var c = new Date(a.date);
-                //     var d = new Date(b.date);
-                //     return c-d;
-                //     }))
                 setUsersWorkouts(data)
             })
         }
@@ -122,56 +117,60 @@ export const Homepage = () => {
                                 </option>
                             ))}
                         </select>
-
-                        {
-                            filteredWorkouts.map(workout => {
-                                let iscardio = false
-                                
-                                {
-                                    exercises.map(exercise => {
-                                        if (workout.exercise.id === exercise.id) {
-                                            if(exercise.exercise_types.find(e=>e.id === 1)){
-                                                iscardio = true
-                                            }
+    
+                        {/* Group workouts by date and display under respective h2 */}
+                        {Array.from(new Set(filteredWorkouts.map(workout => workout.date))).map(date => (
+                            <div key={date}>
+                                <h2>{date}</h2>
+                                {filteredWorkouts
+                                    .filter(workout => workout.date === date)
+                                    .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date, newest to oldest
+                                    .map(workout => {
+                                        let iscardio = false;
+    
+                                        {
+                                            exercises.map(exercise => {
+                                                if (workout.exercise.id === exercise.id) {
+                                                    if (exercise.exercise_types.find(e => e.id === 1)) {
+                                                        iscardio = true;
+                                                    }
+                                                }
+                                            })
                                         }
-                                    })
-                                }
-                                return (
-                                    iscardio ? <>
-                                        <section key={`workout-${workout.id}`} className="workout">
-                                            <div>{workout.date}</div>
-                                            <div>{workout.exercise.label}</div>
-                                            <div>weight(lbs): {workout.weight}</div>
-                                            <div>Distance(miles): {workout.reps_distance}</div>
-                                            <div>Time(min): {workout.sets_time}</div>
-                                            <button onClick={() => {
-                                                navigate({ pathname: `/editworkout/${workout.id}` })
-                                            }}>Edit</button>
-                                            <button onClick={() => {
-                                                handleDelete(workout.id)
-                                            }}>delete</button>
-                                        </section>
-                                    </>
-                                        :
-                                        <><section key={`workout-${workout.id}`} className="workout">
-                                            <div>{workout.date}</div>
-                                            <div>{workout.exercise.label}</div>
-                                            <div>weight(lbs): {workout.weight}</div>
-                                            <div>Reps: {workout.reps_distance}</div>
-                                            <div>Sets: {workout.sets_time}</div>
-                                            <button onClick={() => {
-                                                navigate({ pathname: `/editworkout/${workout.id}` })
-                                            }}>Edit</button>
-                                            <button onClick={() => {
-                                                handleDelete(workout.id)
-                                            }}>delete</button>
-                                        </section></>
-                                )
-                            })
-                        }
+                                        return (
+                                            iscardio ? <>
+                                                <section key={`workout-${workout.id}`} className="workout">
+                                                    <div>{workout.exercise.label}</div>
+                                                    <div>weight(lbs): {workout.weight}</div>
+                                                    <div>Distance(miles): {workout.reps_distance}</div>
+                                                    <div>Time(min): {workout.sets_time}</div>
+                                                    <button onClick={() => {
+                                                        navigate({ pathname: `/editworkout/${workout.id}` })
+                                                    }}>Edit</button>
+                                                    <button onClick={() => {
+                                                        handleDelete(workout.id)
+                                                    }}>delete</button>
+                                                </section>
+                                            </>
+                                                :
+                                                <><section key={`workout-${workout.id}`} className="workout">
+                                                    <div>{workout.exercise.label}</div>
+                                                    <div>weight(lbs): {workout.weight}</div>
+                                                    <div>Reps: {workout.reps_distance}</div>
+                                                    <div>Sets: {workout.sets_time}</div>
+                                                    <button onClick={() => {
+                                                        navigate({ pathname: `/editworkout/${workout.id}` })
+                                                    }}>Edit</button>
+                                                    <button onClick={() => {
+                                                        handleDelete(workout.id)
+                                                    }}>delete</button>
+                                                </section></>
+                                        )
+                                    })}
+                            </div>
+                        ))}
                     </>
             }
-
+    
         </article>
-    )
-}
+    )}
