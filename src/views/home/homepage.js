@@ -88,89 +88,101 @@ export const Homepage = () => {
 
     return (
         <article className="p-3">
-            {
-                loading ? <div>Loading...</div>
-                    :
-                    <>
-                        <button onClick={() => {
+            {loading ? (
+                <div class="d-flex justify-content-center align-items-center">Loading...</div>
+            ) : (
+                <>
+                    <button class="btn btn-success"
+                        onClick={() => {
                             navigate({ pathname: "/workout/new" })
-                        }}>Start a new Workout!</button>
-                        <select
-                            value={selectedDate || ""}
-                            onChange={(e) => setSelectedDate(e.target.value)}
-                        >
-                            <option value="">Filter by Date</option>
-                            {dateOptions.map((date) => (
-                                <option key={date} value={date}>
-                                    {date}
-                                </option>
-                            ))}
-                        </select>
-                        <select
-                            value={selectedExercise || ''}
-                            onChange={(e) => setSelectedExercise(e.target.value)}
-                        >
-                            <option value="">Filter by Exercise</option>
-                            {exercises.map((exercise) => (
-                                <option key={exercise.id} value={exercise.id}>
-                                    {exercise.label}
-                                </option>
-                            ))}
-                        </select>
-    
-                        {/* Group workouts by date and display under respective h2 */}
-                        {Array.from(new Set(filteredWorkouts.map(workout => workout.date))).map(date => (
-                            <div key={date}>
-                                <h2>{date}</h2>
+                        }}
+                    >
+                        Start a new Workout!
+                    </button>
+                    <select
+                        value={selectedDate || ""}
+                        onChange={(e) => setSelectedDate(e.target.value)}
+                    >
+                        <option value="">Filter by Date</option>
+                        {dateOptions.map((date) => (
+                            <option key={date} value={date}>
+                                {date}
+                            </option>
+                        ))}
+                    </select>
+                    <select
+                        value={selectedExercise || ''}
+                        onChange={(e) => setSelectedExercise(e.target.value)}
+                    >
+                        <option value="">Filter by Exercise</option>
+                        {exercises.map((exercise) => (
+                            <option key={exercise.id} value={exercise.id}>
+                                {exercise.label}
+                            </option>
+                        ))}
+                    </select>
+
+                    {/* Group workouts by date and display under respective h2 */}
+                    {Array.from(new Set(filteredWorkouts.map((workout) => workout.date))).map((date) => (
+                        <div key={date}>
+                            <h2>{date}</h2>
+                            <div className="row">
                                 {filteredWorkouts
-                                    .filter(workout => workout.date === date)
+                                    .filter((workout) => workout.date === date)
                                     .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date, newest to oldest
-                                    .map(workout => {
-                                        let iscardio = false;
-    
+                                    .map((workout) => {
+                                        let iscardio = false
+
                                         {
-                                            exercises.map(exercise => {
+                                            exercises.map((exercise) => {
                                                 if (workout.exercise.id === exercise.id) {
-                                                    if (exercise.exercise_types.find(e => e.id === 1)) {
-                                                        iscardio = true;
+                                                    if (exercise.exercise_types.find((e) => e.id === 1)) {
+                                                        iscardio = true
                                                     }
                                                 }
                                             })
                                         }
                                         return (
-                                            iscardio ? <>
-                                                <section key={`workout-${workout.id}`} className="workout">
-                                                    <div>{workout.exercise.label}</div>
-                                                    <div>weight(lbs): {workout.weight}</div>
-                                                    <div>Distance(miles): {workout.reps_distance}</div>
-                                                    <div>Time(min): {workout.sets_time}</div>
-                                                    <button onClick={() => {
-                                                        navigate({ pathname: `/editworkout/${workout.id}` })
-                                                    }}>Edit</button>
-                                                    <button onClick={() => {
-                                                        handleDelete(workout.id)
-                                                    }}>delete</button>
-                                                </section>
-                                            </>
-                                                :
-                                                <><section key={`workout-${workout.id}`} className="workout">
-                                                    <div>{workout.exercise.label}</div>
-                                                    <div>weight(lbs): {workout.weight}</div>
-                                                    <div>Reps: {workout.reps_distance}</div>
-                                                    <div>Sets: {workout.sets_time}</div>
-                                                    <button onClick={() => {
-                                                        navigate({ pathname: `/editworkout/${workout.id}` })
-                                                    }}>Edit</button>
-                                                    <button onClick={() => {
-                                                        handleDelete(workout.id)
-                                                    }}>delete</button>
-                                                </section></>
+                                            <div key={`workout-${workout.id}`} className="col-md-3">
+                                                <div className="card mb-3">
+                                                    <div className="card-body">
+                                                        <h5 className="card-title">{workout.exercise.label}</h5>
+                                                        <p className="card-text">Weight(lbs): {workout.weight}</p>
+                                                        {iscardio ? (
+                                                            <>
+                                                                <p className="card-text">Distance(miles): {workout.reps_distance}</p>
+                                                                <p className="card-text">Time(min): {workout.sets_time}</p>
+                                                            </>
+                                                        ) : (<>
+                                                            <p className="card-text">Reps: {workout.reps_distance}</p>
+                                                            <p className="card-text">Sets: {workout.sets_time}</p>
+                                                        </>)}
+                                                        <button
+                                                            className="btn btn-primary"
+                                                            onClick={() => {
+                                                                navigate({ pathname: `/editworkout/${workout.id}` })
+                                                            }}
+                                                        >
+                                                            Edit
+                                                        </button>
+                                                        <button
+                                                            className="btn btn-danger"
+                                                            onClick={() => {
+                                                                handleDelete(workout.id)
+                                                            }}
+                                                        >
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         )
                                     })}
                             </div>
-                        ))}
-                    </>
-            }
-    
+                        </div>
+                    ))}
+                </>
+            )}
         </article>
-    )}
+    )
+}

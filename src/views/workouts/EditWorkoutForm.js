@@ -74,7 +74,7 @@ export const EditWorkout = () => {
     return (
         <form className="workoutform">
             {
-                loading ? <div>loading...</div>
+                loading ? <div class="d-flex justify-content-center align-items-center">loading...</div>
                     :
                     <>
                         <h2 className="workoutform__title">Edit your workout</h2>
@@ -153,6 +153,7 @@ export const EditWorkout = () => {
                                 </>
                         }
                         <button type="submit"
+                            class="btn btn-success"
                             onClick={evt => {
                                 // Prevent form from being submitted
                                 evt.preventDefault()
