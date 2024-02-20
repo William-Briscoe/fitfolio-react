@@ -12,7 +12,7 @@ export const Register = () => {
     const verifyPassword = useRef()
     const passwordDialog = useRef()
     const isstaff = useRef()
-    const email = useRef()
+    
     const navigate = useNavigate()
 
     const handleRegister = (e) => {
@@ -25,7 +25,7 @@ export const Register = () => {
                 "last_name": lastName.current.value,
                 "password": password.current.value,
                 "is_staff": isstaff.current.checked,
-                "email": email.current.value
+                
             }
 
             registerUser(newUser)
@@ -65,10 +65,7 @@ export const Register = () => {
                     <label htmlFor="inputUsername">Username</label>
                     <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required />
                 </fieldset>
-                <fieldset>
-                    <label htmlFor="email"> Email </label>
-                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email" required />
-                </fieldset>
+                
                 <fieldset>
                     <label htmlFor="inputPassword"> Password </label>
                     <input ref={password} type="password" name="password" className="form-control" placeholder="Password" required />
@@ -80,7 +77,7 @@ export const Register = () => {
                 
                 <fieldset>
                     <label htmlFor="isstaff">Are you an employee?</label>
-                    <input ref={isstaff} type="checkbox" name="isstaff" className="form-control" id="isstaff"/>
+                    <input ref={isstaff} type="checkbox" name="isstaff" className="" id="isstaff"/>
                 </fieldset>
                 
                 
