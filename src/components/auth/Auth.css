@@ -41,3 +41,34 @@ input{
 .link--register a:hover{
     color: crimson;
 }
+
+.form--register{
+    display: flex;
+    flex-direction: column;
+    /* height: 75vh; */
+    justify-content: center;
+    align-items: center;
+}
+
+fieldset{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.link--register{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    color: black;
+}
+
+.link--register a{
+    color: black;
+    margin-top: 0px;
+    margin-left: 10px;
+}
