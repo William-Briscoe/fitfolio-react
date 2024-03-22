@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.fitfolio{
+  background-color: #f94449;
+  position: relative;
+  min-height: 100%;
+}
+
+html, body{
+  /* background-color: #61dafb; */
+  height: 100%;
+  margin: 0;
+}
+

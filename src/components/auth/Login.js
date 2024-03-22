@@ -20,7 +20,7 @@ export const Login = () => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem("fit_token", res.token)
-                    if(res.is_staff === true){
+                    if (res.is_staff === true) {
                         localStorage.setItem('fit_staff', res.is_staff)
                     }
                     navigate("/")
@@ -37,25 +37,29 @@ export const Login = () => {
                 <div>Email or password was not valid.</div>
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
-            <section>
-                <form className="form--login" onSubmit={handleLogin}>
-                    <h1>FitFolio</h1>
-                    <h2>Please sign in</h2>
-                    <fieldset>
-                        <label htmlFor="inputUsername"> Username </label>
-                        <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="inputPassword"> Password </label>
-                        <input ref={password} type="password" id="password" className="form-control" placeholder="Password" required />
-                    </fieldset>
-                    <fieldset style={{
-                        textAlign: "center"
-                    }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
-                    </fieldset>
-                </form>
-            </section>
+
+            <form className="form--login" onSubmit={handleLogin}>
+                
+                    <div className="col logo">
+                        <h1>FitFolio</h1>
+                        <h2>Please sign in</h2>
+                    </div>
+                    <div className="col userinfo">
+                        <fieldset>
+                            {/* <label htmlFor="inputUsername"> Username: </label> */}
+                            <input ref={username} type="username" id="username" className="form-control" placeholder="Username" required autoFocus />
+                        </fieldset>
+                        <fieldset>
+                            {/* <label htmlFor="inputPassword"> Password </label> */}
+                            <input ref={password} type="password" id="password" className="form-control" placeholder="Password" required />
+                        </fieldset>
+                        <fieldset>
+                            <button className="sign-in-button" type="submit">Sign In</button>
+                        </fieldset>
+                    </div>
+                
+            </form>
+
             <section className="link--register">
                 <Link to="/register">Not a member yet?</Link>
             </section>
