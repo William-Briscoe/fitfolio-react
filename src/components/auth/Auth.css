@@ -30,3 +30,14 @@
 input{
     margin: 10px;
 }
+
+.link--register a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    color: black;
+}
+.link--register a:hover{
+    color: crimson;
+}
