@@ -1,53 +1,82 @@
-.home{
+.home {
     margin-left: 10vw;
     margin-right: 10vw;
     background-color: #f94449;
 }
 
-h2{
-    padding-left: 31vw;
+h2 {
+    padding-left: 31.5vw;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
+    /* border-top: 1px solid black; */
+
 }
 
-h5{
+h5 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
 }
 
-.card-body{
+.date-section {
+
+    
+    box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.2);
+    /* border-radius: 10px; */
+    padding: 20px;
+    margin-bottom: 3vh;
+}
+
+.card-body {
     box-shadow: 4px 4px 8px 5px rgba(0, 0, 0, 0.2);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 }
 
-.card-actions{
+.card-actions {
     display: flex;
+    flex-flow: wrap;
+    
 }
 
-.header{
+.edit{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 0vw;
+    margin-right: 2vw;
+}
+
+.delete{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 0vw;
+    margin-right: 0vw;
+}
+
+.card-text {
+    margin-bottom: 8px;
+}
+
+.header {
     display: flex;
     flex-direction: row-reverse;
 }
 
-.filters{
+.filters {
     flex-direction: row-reverse;
     width: 50%;
     margin: 2%;
-    
+
 
 }
 
-select{
+select {
     margin-right: 1vw;
     margin-top: 1.5vh;
 }
 
-.start{
+.start {
     margin-left: 10vw;
     margin-right: 32vw;
 }
 
-.row{
-    margin-bottom: 5vh;
-}
+.row {}

@@ -129,7 +129,7 @@ export const Homepage = () => {
                     </div>
                     {/* Group workouts by date and display under respective h2 */}
                     {Array.from(new Set(filteredWorkouts.map((workout) => workout.date))).map((date) => (
-                        <div key={date}>
+                        <div className="date-section" key={date}>
                             <h2>{date}</h2>
                             <div className="row">
                                 {filteredWorkouts
@@ -164,7 +164,7 @@ export const Homepage = () => {
                                                         </>)}
                                                         <div className="card-actions">
                                                             <button
-                                                                className="btn btn-primary"
+                                                                className="edit btn btn-primary"
                                                                 onClick={() => {
                                                                     navigate({ pathname: `/editworkout/${workout.id}` })
                                                                 }}
@@ -172,7 +172,7 @@ export const Homepage = () => {
                                                                 Edit
                                                             </button>
                                                             <button
-                                                                className="btn btn-danger"
+                                                                className="delete btn btn-danger"
                                                                 onClick={() => {
                                                                     handleDelete(workout.id)
                                                                 }}
