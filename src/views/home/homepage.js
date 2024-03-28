@@ -88,41 +88,45 @@ export const Homepage = () => {
 
 
     return (
-        <article className="p-3">
+        <article className="p-3 home">
             {loading ? (
                 <div class="d-flex justify-content-center align-items-center">Loading...</div>
             ) : (
                 <>
-                    <button class="btn btn-success"
-                        onClick={() => {
-                            navigate({ pathname: "/workout/new" })
-                        }}
-                    >
-                        Start a new Workout!
-                    </button>
-                    <select
-                        value={selectedDate || ""}
-                        onChange={(e) => setSelectedDate(e.target.value)}
-                    >
-                        <option value="">Filter by Date</option>
-                        {dateOptions.map((date) => (
-                            <option key={date} value={date}>
-                                {date}
-                            </option>
-                        ))}
-                    </select>
-                    <select
-                        value={selectedExercise || ''}
-                        onChange={(e) => setSelectedExercise(e.target.value)}
-                    >
-                        <option value="">Filter by Exercise</option>
-                        {exercises.map((exercise) => (
-                            <option key={exercise.id} value={exercise.id}>
-                                {exercise.label}
-                            </option>
-                        ))}
-                    </select>
+                    <div className="header">
 
+                        <button class="btn btn-success start"
+                            onClick={() => {
+                                navigate({ pathname: "/workout/new" })
+                            }}
+                        >
+                            Start a new Workout!
+                        </button>
+                        <div className="filters">
+                            <select
+                                value={selectedDate || ""}
+                                onChange={(e) => setSelectedDate(e.target.value)}
+                            >
+                                <option value="">Filter by Date</option>
+                                {dateOptions.map((date) => (
+                                    <option key={date} value={date}>
+                                        {date}
+                                    </option>
+                                ))}
+                            </select>
+                            <select
+                                value={selectedExercise || ''}
+                                onChange={(e) => setSelectedExercise(e.target.value)}
+                            >
+                                <option value="">Filter by Exercise</option>
+                                {exercises.map((exercise) => (
+                                    <option key={exercise.id} value={exercise.id}>
+                                        {exercise.label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
                     {/* Group workouts by date and display under respective h2 */}
                     {Array.from(new Set(filteredWorkouts.map((workout) => workout.date))).map((date) => (
                         <div key={date}>
@@ -144,7 +148,7 @@ export const Homepage = () => {
                                             })
                                         }
                                         return (
-                                            <div key={`workout-${workout.id}`} className="col-md-3">
+                                            <div key={`workout-${workout.id}`} className="col-md-4">
                                                 <div className="card mb-3">
                                                     <div className="card-body">
                                                         <h5 className="card-title">{workout.exercise.label}</h5>
@@ -158,22 +162,24 @@ export const Homepage = () => {
                                                             <p className="card-text">Reps: {workout.reps_distance}</p>
                                                             <p className="card-text">Sets: {workout.sets_time}</p>
                                                         </>)}
-                                                        <button
-                                                            className="btn btn-primary"
-                                                            onClick={() => {
-                                                                navigate({ pathname: `/editworkout/${workout.id}` })
-                                                            }}
-                                                        >
-                                                            Edit
-                                                        </button>
-                                                        <button
-                                                            className="btn btn-danger"
-                                                            onClick={() => {
-                                                                handleDelete(workout.id)
-                                                            }}
-                                                        >
-                                                            Delete
-                                                        </button>
+                                                        <div className="card-actions">
+                                                            <button
+                                                                className="btn btn-primary"
+                                                                onClick={() => {
+                                                                    navigate({ pathname: `/editworkout/${workout.id}` })
+                                                                }}
+                                                            >
+                                                                Edit
+                                                            </button>
+                                                            <button
+                                                                className="btn btn-danger"
+                                                                onClick={() => {
+                                                                    handleDelete(workout.id)
+                                                                }}
+                                                            >
+                                                                Delete
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
