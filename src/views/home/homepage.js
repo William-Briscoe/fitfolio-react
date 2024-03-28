@@ -3,6 +3,7 @@ import { getCurrentUser } from "../../managers/userManager"
 import { deleteWorkout, getUsersWorkouts } from "../../managers/WorkoutManager"
 import { useNavigate } from "react-router-dom"
 import { getExercises } from "../../managers/ExerciseManager"
+import "./homepage.css"
 
 export const Homepage = () => {
     const navigate = useNavigate()
