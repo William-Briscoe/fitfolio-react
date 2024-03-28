@@ -56,7 +56,7 @@ export const Homepage = () => {
                         return workout.exercise.id === parseInt(selectedExercise)
                     })
                 }
-                setFilteredWorkouts(newlyFilteredWorkouts)
+                setFilteredWorkouts(newlyFilteredWorkouts.reverse())
                 setUsersWorkouts(data)
             })
         }
