@@ -1,3 +1,53 @@
+.home{
+    margin-left: 10vw;
+    margin-right: 10vw;
+    background-color: #f94449;
+}
+
+h2{
+    padding-left: 31vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+
+h5{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+
 .card-body{
     box-shadow: 4px 4px 8px 5px rgba(0, 0, 0, 0.2);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.card-actions{
+    display: flex;
+}
+
+.header{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.filters{
+    flex-direction: row-reverse;
+    width: 50%;
+    margin: 2%;
+    
+
+}
+
+select{
+    margin-right: 1vw;
+    margin-top: 1.5vh;
+}
+
+.start{
+    margin-left: 10vw;
+    margin-right: 32vw;
+}
+
+.row{
+    margin-bottom: 5vh;
 }
