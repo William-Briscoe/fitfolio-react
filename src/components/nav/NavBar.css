@@ -20,6 +20,7 @@
     flex-basis: 20%;
     list-style-type: none;
     color: #f5f7f7;
+
 }
 
 .logout{
@@ -36,7 +37,11 @@
     justify-content: space-evenly;
 }
 
+.nav-link{
+    transition: transform 0.1s;
+}
+
 .nav-link:hover{
     color: crimson;
-    
+    transform: scale(1.05);
 }
