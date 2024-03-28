@@ -5,9 +5,11 @@ import "./FitFolio.css"
 
 export const Fitfolio = () => (
     <>
-        <div className="p-3 fitfolio">
+        <div>
             <NavBar />
-            <ApplicationViews />
+            <div className="fitfolio">
+                <ApplicationViews />
+            </div>
         </div>
         <div className="footer">footer</div>
     </>

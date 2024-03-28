@@ -3,6 +3,10 @@
     flex-wrap: nowrap;
     justify-content: left;
     background-color: #000407;
+    margin: 0%;
+    padding: 2vh;
+    font-weight: bold;
+    font-size: larger;
 }
 
 .navbar__item {
@@ -27,4 +31,5 @@
 
 .nav-link:hover{
     color: crimson;
+    
 }
