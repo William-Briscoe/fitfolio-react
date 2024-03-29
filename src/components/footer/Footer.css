@@ -1,0 +1,52 @@
+Footer {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    height: 100%;
+}
+
+.name-and-desc {
+    max-width: 50%;
+    min-width: 64ch;
+}
+
+.contact-links{
+    padding: 0;
+    margin: 0;
+}
+
+
+li{
+    list-style: none;
+    margin: 24px, 24px, 24px;
+    justify-content: space-around;
+    
+}
+
+.git-icon{
+    margin-right: 4px;
+    margin-bottom: 5px;
+}
+
+.linkedin-icon{
+    margin-right: 4px;
+    margin-bottom: 5px;
+}
+
+.mail-icon{
+    margin-right: 4px;
+    margin-bottom: 2.5px;
+}
+
+a{
+    color: white;
+}
+
+a:hover{
+    color: crimson;
+}
