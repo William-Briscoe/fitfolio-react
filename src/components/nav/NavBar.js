@@ -7,7 +7,7 @@ export const NavBar = () => {
         <ul className="navbar">
             {
                 (localStorage.getItem("fit_token") !== null) ? <>
-                    <li className="navbar__item">
+                    <li className="navbar__item nav-item">
                         <button className="nav-link fakeLink"
                             onClick={() => {
                                 navigate('/')
@@ -15,7 +15,7 @@ export const NavBar = () => {
                         >Home</button>
                     </li>
                     {(localStorage.getItem('fit_staff') !== null) ?
-                        <li className="navbar__item">
+                        <li className="navbar__item nav-item">
                             <button className="nav-link fakeLink"
                                 onClick={() => {
                                     navigate('/exercises')
