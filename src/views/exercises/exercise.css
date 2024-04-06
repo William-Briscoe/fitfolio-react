@@ -1,3 +1,7 @@
 .types-boxes{
     list-style-type: none;
 }
+
+.exerciseManagement{
+    min-height: 74vh;
+}

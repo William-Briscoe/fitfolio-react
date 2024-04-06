@@ -15,6 +15,7 @@ h2 {
 h5 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
+    
 }
 
 .date-section {
@@ -29,12 +30,23 @@ h5 {
 .card-body {
     box-shadow: 4px 4px 8px 5px rgba(0, 0, 0, 0.2);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    background-color: black;
 
+}
+
+.card{
+    background-color: black;
+}
+
+.card-title {
+    justify-content: center;
 }
 
 .card-actions {
     display: flex;
     flex-flow: wrap;
+    justify-content: space-evenly;
     
 }
 
@@ -54,6 +66,7 @@ h5 {
 
 .card-text {
     margin-bottom: 8px;
+    padding-left: 3%;
 }
 
 .header {
