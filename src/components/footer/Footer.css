@@ -8,6 +8,7 @@ Footer {
     padding-left: 5vw;
     padding-right: 5vw;
     height: 100%;
+    justify-self: end;
 }
 
 .name-and-desc {

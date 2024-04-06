@@ -152,15 +152,34 @@ export const Homepage = () => {
                                                 <div className="card mb-3">
                                                     <div className="card-body">
                                                         <h5 className="card-title">{workout.exercise.label}</h5>
-                                                        <p className="card-text">Weight(lbs): {workout.weight}</p>
+                                                        <p className="card-text">{workout.weight} lbs</p>
                                                         {iscardio ? (
                                                             <>
-                                                                <p className="card-text">Distance(miles): {workout.reps_distance}</p>
-                                                                <p className="card-text">Time(min): {workout.sets_time}</p>
+                                                                <>{workout.reps_distance > 1 ?(
+                                                                    <p className="card-text">{workout.reps_distance} miles in</p>
+                                                                ) : (
+                                                                    <p className="card-text">{workout.reps_distance} mile in</p>
+                                                                )}
+                                                                </>
+                                                                {workout.sets_time > 1 ? (
+                                                                    <p className="card-text">{workout.sets_time} minutes</p>
+                                                                ) : (
+                                                                    <p className="card-text">{workout.sets_time} minute</p>
+                                                                )
+                                    }
                                                             </>
                                                         ) : (<>
-                                                            <p className="card-text">Reps: {workout.reps_distance}</p>
-                                                            <p className="card-text">Sets: {workout.sets_time}</p>
+                                                        {workout.sets_time > 1 ? (
+                                                                <p className="card-text">{workout.sets_time} sets of</p>
+                                                            ) : (
+                                                                <p className="card-text">{workout.sets_time} set of</p>
+                                                            )}
+                                                            {workout.reps_distance > 1 ? (
+                                                                <p className="card-text">{workout.reps_distance} repitions</p>
+                                                            ) : (
+                                                                <p className="card-text">{workout.reps_distance} repition</p>
+                                                            )}
+                                                            
                                                         </>)}
                                                         <div className="card-actions">
                                                             <button
