@@ -42,6 +42,6 @@
 }
 
 .nav-link:hover{
-    color: crimson;
+    color: #ccff33;
     transform: scale(1.05);
 }
