@@ -128,12 +128,12 @@ export const Homepage = () => {
                         </div>
                     </div>
                     {/* Group workouts by date and display under respective h2 */}
-                    {Array.from(new Set(filteredWorkouts.map((workout) => workout.date))).map((date) => (
+                    {Array.from(new Set(filteredWorkouts.map((workout) => workout.datesplit.month + "/" + workout.datesplit.day + "/" + workout.datesplit.year ))).map((date) => (
                         <div className="date-section" key={date}>
                             <h2>{date}</h2>
                             <div className="row">
                                 {filteredWorkouts
-                                    .filter((workout) => workout.date === date)
+                                    .filter((workout) => workout.datesplit.month + "/" + workout.datesplit.day + "/" + workout.datesplit.year === date)
                                     .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date, newest to oldest
                                     .map((workout) => {
                                         let iscardio = false
@@ -149,35 +149,35 @@ export const Homepage = () => {
                                         }
                                         return (
                                             <div key={`workout-${workout.id}`} className="col-md-4">
-                                                <div className="card mb-3">
+                                                <div className="card">
                                                     <div className="card-body">
                                                         <h5 className="card-title">{workout.exercise.label}</h5>
-                                                        <p className="card-text">{workout.weight} lbs</p>
+                                                        <p className="card-text"><strong>{workout.weight} lbs</strong></p>
                                                         {iscardio ? (
                                                             <>
                                                                 <>{workout.reps_distance > 1 ?(
-                                                                    <p className="card-text">{workout.reps_distance} miles in</p>
+                                                                    <p className="card-text"><strong>{workout.reps_distance} miles</strong> in</p>
                                                                 ) : (
-                                                                    <p className="card-text">{workout.reps_distance} mile in</p>
+                                                                    <p className="card-text"><strong>{workout.reps_distance} mile</strong> in</p>
                                                                 )}
                                                                 </>
                                                                 {workout.sets_time > 1 ? (
-                                                                    <p className="card-text">{workout.sets_time} minutes</p>
+                                                                    <p className="card-text"><strong>{workout.sets_time} minutes</strong></p>
                                                                 ) : (
-                                                                    <p className="card-text">{workout.sets_time} minute</p>
+                                                                    <p className="card-text"><strong>{workout.sets_time} minute</strong></p>
                                                                 )
                                     }
                                                             </>
                                                         ) : (<>
                                                         {workout.sets_time > 1 ? (
-                                                                <p className="card-text">{workout.sets_time} sets of</p>
+                                                                <p className="card-text"><strong>{workout.sets_time} sets</strong> of</p>
                                                             ) : (
-                                                                <p className="card-text">{workout.sets_time} set of</p>
+                                                                <p className="card-text"><strong>{workout.sets_time} set</strong> of</p>
                                                             )}
                                                             {workout.reps_distance > 1 ? (
-                                                                <p className="card-text">{workout.reps_distance} repitions</p>
+                                                                <p className="card-text"><strong>{workout.reps_distance} repitions</strong></p>
                                                             ) : (
-                                                                <p className="card-text">{workout.reps_distance} repition</p>
+                                                                <p className="card-text"><strong>{workout.reps_distance} repition</strong></p>
                                                             )}
                                                             
                                                         </>)}
