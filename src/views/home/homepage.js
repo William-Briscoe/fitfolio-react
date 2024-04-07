@@ -88,6 +88,8 @@ export const Homepage = () => {
 
 
     return (
+        <>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         <article className="p-3 home">
             {loading ? (
                 <div class="d-flex justify-content-center align-items-center">Loading...</div>
@@ -95,7 +97,7 @@ export const Homepage = () => {
                 <>
                     <div className="header">
 
-                        <button class="btn btn-success start"
+                        <button class= "btn start-workout"
                             onClick={() => {
                                 navigate({ pathname: "/workout/new" })
                             }}
@@ -103,7 +105,7 @@ export const Homepage = () => {
                             Start a new Workout!
                         </button>
                         <div className="filters">
-                            <select
+                            <select className="dropdown"
                                 value={selectedDate || ""}
                                 onChange={(e) => setSelectedDate(e.target.value)}
                             >
@@ -114,7 +116,7 @@ export const Homepage = () => {
                                     </option>
                                 ))}
                             </select>
-                            <select
+                            <select className="dropdown"
                                 value={selectedExercise || ''}
                                 onChange={(e) => setSelectedExercise(e.target.value)}
                             >
@@ -183,20 +185,20 @@ export const Homepage = () => {
                                                         </>)}
                                                         <div className="card-actions">
                                                             <button
-                                                                className="edit btn btn-primary"
+                                                                className="edit btn"
                                                                 onClick={() => {
                                                                     navigate({ pathname: `/editworkout/${workout.id}` })
                                                                 }}
                                                             >
-                                                                Edit
+                                                                <i class='fa fa-edit'></i>
                                                             </button>
                                                             <button
-                                                                className="delete btn btn-danger"
+                                                                className="delete btn"
                                                                 onClick={() => {
                                                                     handleDelete(workout.id)
                                                                 }}
                                                             >
-                                                                Delete
+                                                                <i class="fa fa-trash"></i>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -210,5 +212,5 @@ export const Homepage = () => {
                 </>
             )}
         </article>
-    )
+    </>)
 }
